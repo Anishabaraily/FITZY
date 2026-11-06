@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== "undefined" ? title : "FITZY" %> | FITZY</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <a class="logo" href="/">FITZY</a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/?category=Tops">Tops</a>
+    <a href="/?category=Footwear">Footwear</a>
+    <a href="/?category=Bottomwear">Bottomwear</a>
+    <a href="/?category=Jackets">Jackets</a>
+    <a href="/cart">Cart (<%= cartCount %>)</a>
+  </nav>
+</header>

@@ -1,0 +1,65 @@
+
+<%- include("partials/header", { title: "Home" }) %>
+
+<main class="container">
+  <section class="hero">
+    <h1>Fits That Hit.</h1>
+    <p>Your everyday fashion. Your everyday vibe.</p>
+  </section>
+
+  <h2>Shop by category</h2>
+
+  <div class="filters">
+    <a class="<%= selectedCategory === 'All' ? 'active' : '' %>" href="/">
+      All
+    </a>
+
+    <% categories.forEach(category => { %>
+      <a
+        class="<%= selectedCategory === category ? 'active' : '' %>"
+        href="/?category=<%= encodeURIComponent(category) %>">
+        <%= category %>
+      </a>
+    <% }) %>
+  </div>
+
+  <h2><%= selectedCategory === "All" ? "All products" : selectedCategory %></h2>
+
+  <% if (!products.length) { %>
+    <section class="empty-state">
+      <h3>No products added yet</h3>
+      <p>Add your own products in the <strong>products</strong> array in <code>server.js</code>.</p>
+      <p>Put product photos in <code>public/images</code> and use paths like <code>/images/top-name.jpg</code>.</p>
+    </section>
+  <% } else { %>
+
+    <section class="products">
+      <% products.forEach(product => { %>
+        <article class="card">
+
+          <a href="/product/<%= product.id %>">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+          </a>
+
+          <h3>
+            <a href="/product/<%= product.id %>">
+              <%= product.name %>
+            </a>
+          </h3>
+
+          <p><%= product.category %></p>
+
+          <p class="price"><%= money(product.price) %></p>
+
+          <a class="button" href="/product/<%= product.id %>">
+            View product
+          </a>
+
+        </article>
+      <% }) %>
+    </section>
+
+  <% } %>
+</main>
+
+<%- include("partials/footer") %>

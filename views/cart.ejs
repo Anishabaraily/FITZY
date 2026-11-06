@@ -1,0 +1,45 @@
+
+<%- include("partials/header", { title: "Your Cart" }) %>
+
+<main class="container">
+  <h1>Your Shopping Cart</h1>
+
+  <% if (!cart.length) { %>
+
+    <p>Your cart is empty.</p>
+    <a href="/" class="button">Continue Shopping</a>
+
+  <% } else { %>
+
+    <% cart.forEach((item) => { %>
+      <div class="cart-item">
+        <img
+          src="<%= item.image %>"
+          alt="<%= item.name %>"
+          style="width: 100px; object-fit: contain;"
+        >
+
+        <div>
+          <h2><%= item.name %></h2>
+          <p>Size: <strong><%= item.size %></strong></p>
+          <p>Quantity: <%= item.quantity %></p>
+          <p>Price: <%= money(item.price) %></p>
+          <p>Subtotal: <strong><%= money(item.subtotal) %></strong></p>
+
+          <form action="/cart/remove/<%= item.id %>" method="POST">
+            <input type="hidden" name="size" value="<%= item.size %>">
+            <button type="submit">Remove</button>
+          </form>
+        </div>
+      </div>
+      <hr>
+    <% }) %>
+
+    <h2>Total: <%= money(total) %></h2>
+
+    <a href="/checkout" class="button">Proceed to Checkout</a>
+
+  <% } %>
+</main>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,26 @@
+
+<%- include("partials/header", { title: "Order Confirmed" }) %>
+
+<main class="container">
+  <section class="empty-state" style="text-align: center; padding: 50px 20px;">
+
+    <h1 style="color: green;">✓ Order Confirmed!</h1>
+
+    <h2>Thank you, <%= name %>!</h2>
+
+    <p>Your order has been successfully placed with FITZY.</p>
+
+    <p><strong>Order Number:</strong> <%= orderId %></p>
+
+    <p>We are getting your items ready.</p>
+
+    <h2>Fits That Hit.</h2>
+
+    <p>Your everyday fashion. Your everyday vibe.</p>
+
+    <a href="/" class="button">Continue Shopping</a>
+
+  </section>
+</main>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,36 @@
+
+<%- include("partials/header", { title: product.name }) %>
+
+<main class="container">
+  <section class="product-detail">
+    <img
+      src="<%= product.image %>"
+      alt="<%= product.name %>"
+      style="width: 100%; max-width: 450px; object-fit: contain;"
+    >
+
+    <div>
+      <p><%= product.category %></p>
+      <h1><%= product.name %></h1>
+      <h2><%= money(product.price) %></h2>
+
+      <form action="/cart/add/<%= product.id %>" method="POST">
+        <label for="size">Choose your size:</label>
+
+        <select id="size" name="size" required>
+          <option value="">Select a size</option>
+
+          <% product.sizes.forEach((size) => { %>
+            <option value="<%= size %>"><%= size %></option>
+          <% }) %>
+        </select>
+
+        <button class="button" type="submit">
+          Add to Cart
+        </button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

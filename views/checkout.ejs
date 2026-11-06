@@ -1,0 +1,34 @@
+
+<%- include("partials/header", { title: "Checkout" }) %>
+
+<main class="container">
+  <h1>Checkout</h1>
+
+  <div class="form-box">
+
+    <% if (typeof error !== "undefined") { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <p>Order total: <strong><%= money(total) %></strong></p>
+
+    <form action="/checkout" method="POST">
+
+      <label>Full name</label>
+      <input type="text" name="name" required>
+
+      <label>Email address</label>
+      <input type="email" name="email" required>
+
+      <label>Delivery address</label>
+      <textarea name="address" rows="3" required></textarea>
+
+      <button class="button" type="submit">
+        Place demo order
+      </button>
+
+    </form>
+  </div>
+</main>
+
+<%- include("partials/footer") %>
